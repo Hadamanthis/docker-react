@@ -10,13 +10,14 @@ script:
 
 deploy:
         provider: elasticbeanstalk
-        region: "us-east-2"
+        region: "us-east-2" # Região onde o provider foi criado (está na url)
         app: "docker"
         env: "Docker-env"
-        bucket_name: "elasticbeanstalk-us-east-2-169343362074"
-        bucket_path: "docker"
-        on:
+        bucket_name: "elasticbeanstalk-us-east-2-169343362074" # onde o app vai ficar armazenado, nesse caso, no S3 (Amazon)
+        bucket_path: "docker" # diretório onde o app se está dentro do bucket
+        on: # Necessário para avisar que somente o branch master deve ser monitorado
                 branch: master
+        # armazenados no Travis CI, gerados pelo IEM (Amazon)
         access_key_id:
                 secure: $AWS_ACCESS_KEY
         secret_access_key:
